@@ -7,8 +7,8 @@ class INTER_usr {
     double money_transfer();
     std::string currency();
     virtual std::string message();
+    void get_message();
     virtual double fees();
-
 };
 
 #endif

@@ -35,6 +35,8 @@ void money_transfer() {
 
 virtual std::string message();
 
+void get_message();
+
 virtual double fees();
 
 
