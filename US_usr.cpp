@@ -1,4 +1,5 @@
-#include "INTER_usr.cpp"
+#include <string>
+#include <iostream>
 
 class US_usr : public INTER_usr {
 
@@ -8,12 +9,15 @@ public:
         amount = usr_money;
     }
 
+    void check_status() {
+        std::cout << "You have" << usr_money;
+    }
 
-    // Implementing virtual function message
-    std::string message(); 
+    // // Implementing virtual function message
+    // std::string message(); 
 
-    // Implementing virtual function fees
-    double fees();
+    // // Implementing virtual function fees
+    // double fees();
 
 
 

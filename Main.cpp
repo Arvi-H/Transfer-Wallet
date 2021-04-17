@@ -1,10 +1,12 @@
-#include "INTER_usr.h"
-#include "US_usr.h"
-#include "UK_usr.h"
+#include "INTER_usr.cpp"
+#include "US_usr.cpp"
+#include "UK_usr.cpp"
+#include <iostream>
 
 
 int main() {
     US_usr foo(3000);
+    foo.check_status();
 }
 
 

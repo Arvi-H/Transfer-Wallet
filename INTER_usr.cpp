@@ -1,4 +1,4 @@
-#include <IOstream>
+#include <iostream>
 
 class INTER_usr {
 
@@ -6,37 +6,37 @@ public:
 
 double usr_money;
 
-double convert() {
-    // if (INTER_usr == UK_usr) {
-    //     // return math conversion to USD
-    // }
+// double convert() {
+//     // if (INTER_usr == UK_usr) {
+//     //     // return math conversion to USD
+//     // }
 
-    // return math conversion to GBP
+//     // return math conversion to GBP
 
-}
+// }
 
-std::string currency() {
-    // if (INTER_usr == UK_usr) {
-    //     // return "GDP"
-    // }  
+// std::string currency() {
+//     // if (INTER_usr == UK_usr) {
+//     //     // return "GDP"
+//     // }  
 
-    // return "USD"
-}
-
-
+//     // return "USD"
+// }
 
 
-void money_transfer() {
-    // convert(sender);
-    // usr_money-=amount;
-    //  // std::cout << sender << " has " << usr_money << " remaining in their balance.";
-}
 
-virtual std::string message();
 
-void get_message();
+// void money_transfer() {
+//     // convert(sender);
+//     // usr_money-=amount;
+//     //  // std::cout << sender << " has " << usr_money << " remaining in their balance.";
+// }
 
-virtual double fees();
+// virtual std::string message();
+
+void check_status();
+
+// virtual double fees();
 
 
 };
