@@ -1,9 +1,8 @@
-#include "INTER_usr.h"
 #include <IOstream>
 
 class INTER_usr {
 
-private:
+public:
 
 double usr_money;
 
@@ -19,7 +18,7 @@ double convert() {
 std::string currency() {
     // if (INTER_usr == UK_usr) {
     //     // return "GDP"
-    // }
+    // }  
 
     // return "USD"
 }
