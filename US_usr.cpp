@@ -1,25 +1,15 @@
+#include "US_usr.h"
 #include <string>
 #include <iostream>
+ 
+US_usr::US_usr(std::string usr_name, double balance_amount) {
+    name = usr_name;
+    usr_money = balance_amount;
+}
 
-class US_usr : public INTER_usr {
+void US_usr::check_status() {
+    std::cout << name << " has " << currency << usr_money << " remaining." << std::endl;
 
-public:
+    std::cout << "Recent Messages: " << message << std::endl;
+}
 
-    US_usr(int amount) {
-        amount = usr_money;
-    }
-
-    void check_status() {
-        std::cout << "You have" << usr_money;
-    }
-
-    // // Implementing virtual function message
-    // std::string message(); 
-
-    // // Implementing virtual function fees
-    // double fees();
-
-
-
-
-};

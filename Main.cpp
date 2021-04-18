@@ -1,31 +1,19 @@
-#include "INTER_usr.cpp"
-#include "US_usr.cpp"
-#include "UK_usr.cpp"
+#include "INTER_usr.h"
+#include "US_usr.h"
 #include <iostream>
 
 
 int main() {
-    US_usr foo(3000);
-    foo.check_status();
+    US_usr user1("foo", 3000.0);
+    user1.check_status();
+
+    US_usr user2("bar", 2000);
+    user1.money_transfer(user2, 500.0, "Test");
+
+    user1.check_status();
+    user2.check_status();
 }
 
 
 
-
-/*
-
-
-// Set money amount in constructor and save to variable
-US_usr foo;
-UK_usr bar;
-
-foo.money_transfer(bar, 1000); // calculate currency, fees, and conversion.
-
-foo.message("Here's the money for lunch tomorrow.");
-
-bar.check_status(); // print money amount by calling usr_money in the func, print message // Good Formating
-
-
-
-*/
 

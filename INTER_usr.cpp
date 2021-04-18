@@ -1,45 +1,19 @@
+#include "INTER_usr.h"
 #include <iostream>
 
-class INTER_usr {
+// Remove func when class becomes abstract 
+ void INTER_usr::check_status() {
+    std::cout << "General status check" << std::endl;
+}
 
-public:
-
-double usr_money;
-
-// double convert() {
-//     // if (INTER_usr == UK_usr) {
-//     //     // return math conversion to USD
-//     // }
-
-//     // return math conversion to GBP
-
-// }
-
-// std::string currency() {
-//     // if (INTER_usr == UK_usr) {
-//     //     // return "GDP"
-//     // }  
-
-//     // return "USD"
-// }
+void INTER_usr::money_transfer(INTER_usr receiver, double amount, std::string msg) {
+    
+    usr_money -= amount;
+    receiver.usr_money += amount;
+    message = msg;
 
 
-
-
-// void money_transfer() {
-//     // convert(sender);
-//     // usr_money-=amount;
-//     //  // std::cout << sender << " has " << usr_money << " remaining in their balance.";
-// }
-
-// virtual std::string message();
-
-void check_status();
-
-// virtual double fees();
-
-
-};
+    std::cout << "Order sent successfully." << std::endl;
+}
  
-
-  
+// Make INTER_usr an abstract class because you wont need INTER_usr instances, but will need to inherit from it
