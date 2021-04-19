@@ -9,8 +9,7 @@ public:
     
     US_usr(std::string usr_name = "Unknown User", double balance_amount = 0.0);
     
-    std::string currency = "$";
-
+ 
     void check_status();
     
 };
