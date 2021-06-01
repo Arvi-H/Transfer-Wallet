@@ -18,3 +18,22 @@ void US_usr::check_status() {
     }
  }
 
+void US_usr::fee_list() {
+    std::cout << "- - - - - - - - - - - - - - - - - - - - -" << std::endl;
+    std::cout << "\tFees for US transactions:" << std::endl;
+    std::cout << "- - - - - - - - - - - - - - - - - - - - -" "\n" << std::endl;
+
+    std::cout << "1. Global Bank: US ($) -> UK (£) money transfers: 2%." << std::endl;
+    std::cout << "2. Global Bank: Bitcoin (BTC) -> US ($) conversions: 1%." << std::endl;
+    std::cout << "3. Crypto Bank: US ($) -> Bitcoin (BTC) conversions: 0.1%.\n" << std::endl;
+
+}
+
+void US_usr::hidden_fees(US_usr usr) {
+    INTER_usr* admin = &usr;
+    admin->fee_list();
+    
+    // usr.fee_list();
+
+    // Fun fact do admin->INTER_usr::fee_list(); to print out the INTER_usr version of the function | Try later with UK
+}

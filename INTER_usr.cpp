@@ -1,10 +1,6 @@
 #include "INTER_usr.h"
 #include <iostream>
 
-void INTER_usr::check_status() {
-    std::cout << "General status check" << std::endl;
-}
-
 void INTER_usr::recent_msg() {
     if (message == "") {
         std::cout << "Recent Messages: None." << "\n" << std::endl;
@@ -17,7 +13,6 @@ void INTER_usr::transfer_msg() {
     
     bal_change = curr_balance - init_bal;
 
-    
     // Determine whether the user sent or received money
     if (bal_change < 0) {
         std::cout << name << " has sent " << currency << -bal_change << " to " << receiver_name << std::endl;
@@ -65,5 +60,10 @@ void INTER_usr::money_transfer(INTER_usr &receiver, double amount, std::string m
     // Confirmation Msg
  
 }
- 
-// Make INTER_usr an abstract class because you wont need INTER_usr instances, but will need to inherit from it
+  
+// Fill with all of the fees combined from US and UK
+void INTER_usr::fee_list() {
+    std::cout << "- - - - - - - - - - - -" << std::endl;
+}
+
+
