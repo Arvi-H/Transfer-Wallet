@@ -9,11 +9,12 @@ US_usr::US_usr(std::string usr_name, double balance_amount) {
 }
 
 void US_usr::check_status() { 
-    
+     
     // There has to be a better way to do this
     if (curr_balance == init_bal) {
         std::cout << ""; } 
     else { 
+        std::cout << "US Transaction: " << std::endl;
         transfer_msg();
     }
  }
@@ -27,13 +28,4 @@ void US_usr::fee_list() {
     std::cout << "2. Global Bank: Bitcoin (BTC) -> US ($) conversions: 1%." << std::endl;
     std::cout << "3. Crypto Bank: US ($) -> Bitcoin (BTC) conversions: 0.1%.\n" << std::endl;
 
-}
-
-void US_usr::hidden_fees(US_usr usr) {
-    INTER_usr* admin = &usr;
-    admin->fee_list();
-    
-    // usr.fee_list();
-
-    // Fun fact do admin->INTER_usr::fee_list(); to print out the INTER_usr version of the function | Try later with UK
 }

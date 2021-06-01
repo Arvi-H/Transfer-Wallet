@@ -63,7 +63,26 @@ void INTER_usr::money_transfer(INTER_usr &receiver, double amount, std::string m
   
 // Fill with all of the fees combined from US and UK
 void INTER_usr::fee_list() {
-    std::cout << "- - - - - - - - - - - -" << std::endl;
+    std::cout << "- - - - - - - - - - - - - - - - - - - - -\n";
+    std::cout << "\tFees for All Global transactions:" << std::endl;
+    std::cout << "- - - - - - - - - - - - - - - - - - - - -\n"<< std::endl;
+    
+    std::cout << "1. Global Bank: US ($) -> UK (£) money transfers: 2%." << std::endl;
+    std::cout << "2. Global Bank: Bitcoin (BTC) -> US ($) conversions: 1%." << std::endl;
+    std::cout << "3. Crypto Bank: US ($) -> Bitcoin (BTC) conversions: 0.1%.\n" << std::endl;
+
+    std::cout << "4. Global Bank: UK (£) -> US ($) money transfers: 2%." << std::endl;
+    std::cout << "5. Global Bank: Bitcoin (BTC) -> UK ($) conversions: 1%." << std::endl;
+    std::cout << "6. Crypto Bank: UK ($) -> Bitcoin (BTC) conversions: 0.1%.\n" << std::endl;
+    
 }
 
+void INTER_usr::hidden_fees(INTER_usr &usr) {
+    INTER_usr* admin = &usr;
+     admin->fee_list();
+    
+    // usr.fee_list(); // Why does this work?
+
+    // Fun fact do admin->INTER_usr::fee_list(); to print out the INTER_usr version of the function | Try later with UK
+}
 
