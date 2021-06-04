@@ -17,16 +17,26 @@ public:
     std::string currency = "$";
 
     // Func overriden in all classes | Runtime Polymorphism
-    virtual void check_status() = 0;
+    virtual void check_status();
+    // virtual void check_status() = 0;
+
 
     void money_transfer(INTER_usr &receiver, double amount, std::string msg = "");
+
+
     void transfer_msg();
+
+
     void recent_msg();
+
+
     bool sufficient_bal(double amount);
 
-    virtual void fee_list();
-    void hidden_fees(INTER_usr &usr);
 
+    void hidden_fees(INTER_usr &usr);
+ 
+ private:
+    virtual void fee_list();
 };
 
 #endif 

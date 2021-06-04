@@ -34,12 +34,15 @@ bool INTER_usr::sufficient_bal(double amount) {
 
 void INTER_usr::money_transfer(INTER_usr &receiver, double amount, std::string msg) {
     
+    // INTER_usr *admin; Line 55
+
     // Current user name details
     this->receiver_name = receiver.name;
     this->sender_name = this->name;
 
     // Transfer Calc
     if (sufficient_bal(amount)) { 
+        // reset init_bal to curr_balance
         this->curr_balance -= amount;  
         receiver.curr_balance += amount;
         std::cout << "- - Order Sent Successfully - -" << "\n" << std::endl;
@@ -49,7 +52,8 @@ void INTER_usr::money_transfer(INTER_usr &receiver, double amount, std::string m
         std::cout << "- - Transaction failed: Insufficient funds - -" << "\n" << std::endl;
     }
     
-  
+    // admin->log_data(); Call test function somehow
+
     // Receiver name details
     receiver.receiver_name = receiver.name;
     receiver.sender_name = sender_name;
@@ -81,8 +85,7 @@ void INTER_usr::hidden_fees(INTER_usr &usr) {
     INTER_usr* admin = &usr;
      admin->fee_list();
     
-    // usr.fee_list(); // Why does this work?
+    usr.fee_list(); // Why does this work?
 
     // Fun fact do admin->INTER_usr::fee_list(); to print out the INTER_usr version of the function | Try later with UK
 }
-

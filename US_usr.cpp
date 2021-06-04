@@ -1,7 +1,8 @@
 #include "US_usr.h"
 #include <string>
 #include <iostream>
- 
+#include "Transactions.h"
+
 US_usr::US_usr(std::string usr_name, double balance_amount) {
     name = usr_name;
     curr_balance = balance_amount;
@@ -29,3 +30,5 @@ void US_usr::fee_list() {
     std::cout << "3. Crypto Bank: US ($) -> Bitcoin (BTC) conversions: 0.1%.\n" << std::endl;
 
 }
+
+  
