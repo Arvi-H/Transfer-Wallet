@@ -9,7 +9,7 @@ public:
     double init_bal;
     double bal_change;
 
-    std::string name;
+    std::string usr_name;
     std::string receiver_name;
     std::string sender_name;
 

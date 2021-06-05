@@ -15,13 +15,13 @@ void INTER_usr::transfer_msg() {
 
     // Determine whether the user sent or received money
     if (bal_change < 0) {
-        std::cout << name << " has sent " << currency << -bal_change << " to " << receiver_name << std::endl;
+        std::cout <<usr_name << " has sent " << currency << -bal_change << " to " << receiver_name << std::endl;
     } else {
-        std::cout << name << " has received " << currency << bal_change << " from " << sender_name << std::endl;
+        std::cout <<usr_name << " has received " << currency << bal_change << " from " << sender_name << std::endl;
     }
 
     // Balance on account  
-    std::cout << name << " has " << currency << curr_balance << " remaining." << std::endl;
+    std::cout <<usr_name << " has " << currency << curr_balance << " remaining." << std::endl;
 
     // Print recent messages
     recent_msg();
@@ -36,9 +36,9 @@ void INTER_usr::money_transfer(INTER_usr &receiver, double amount, std::string m
     
     // INTER_usr *admin; Line 55
 
-    // Current user name details
-    this->receiver_name = receiver.name;
-    this->sender_name = this->name;
+    // Current userusr_name details
+    this->receiver_name = receiver.usr_name;
+    this->sender_name = this->usr_name;
 
     // Transfer Calc
     if (sufficient_bal(amount)) { 
@@ -48,14 +48,14 @@ void INTER_usr::money_transfer(INTER_usr &receiver, double amount, std::string m
         std::cout << "- - Order Sent Successfully - -" << "\n" << std::endl;
 
     } else {
-        // std::cout << name << "'s transfer attempt of " << currency << amount << " to " << receiver_name << " failed.";
+        // std::cout <<usr_name << "'s transfer attempt of " << currency << amount << " to " << receiver_name << " failed.";
         std::cout << "- - Transaction failed: Insufficient funds - -" << "\n" << std::endl;
     }
     
     // admin->log_data(); Call test function somehow
 
-    // Receiver name details
-    receiver.receiver_name = receiver.name;
+    // Receiverusr_name details
+    receiver.receiver_name = receiver.usr_name;
     receiver.sender_name = sender_name;
 
     // Current user's message to receiver
@@ -65,7 +65,6 @@ void INTER_usr::money_transfer(INTER_usr &receiver, double amount, std::string m
  
 }
   
-// Fill with all of the fees combined from US and UK
 void INTER_usr::fee_list() {
     std::cout << "- - - - - - - - - - - - - - - - - - - - -\n";
     std::cout << "\tFees for All Global transactions:" << std::endl;
@@ -89,3 +88,13 @@ void INTER_usr::hidden_fees(INTER_usr &usr) {
 
     // Fun fact do admin->INTER_usr::fee_list(); to print out the INTER_usr version of the function | Try later with UK
 }
+void INTER_usr::check_status() { 
+     
+    // There has to be a better way to do this
+    if (curr_balance == init_bal) {
+        std::cout << ""; } 
+    else { 
+        std::cout << "INTER Transaction: " << std::endl;
+        // transfer_msg();
+    }
+ }

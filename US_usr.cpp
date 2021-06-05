@@ -3,11 +3,13 @@
 #include <iostream>
 #include "Transactions.h"
 
-US_usr::US_usr(std::string usr_name, double balance_amount) {
-    name = usr_name;
+US_usr::US_usr(std::string name, double balance_amount) {
+    usr_name = name;
     curr_balance = balance_amount;
     init_bal = balance_amount;
 }
+
+
 
 void US_usr::check_status() { 
      
@@ -18,6 +20,8 @@ void US_usr::check_status() {
         std::cout << "US Transaction: " << std::endl;
         transfer_msg();
     }
+
+    // std::cout << "test worked";
  }
 
 void US_usr::fee_list() {

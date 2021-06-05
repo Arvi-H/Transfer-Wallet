@@ -6,32 +6,89 @@
 #include <map>
 
 int main() {
-    US_usr user1("Arvi", 3000.0);
-    US_usr user2("Casey", 2000.0);
-    US_usr user3("Brock", 1000.0);
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// - - - - - - - - - - - - - - - - -   Command Line I/O  Pseudocode - - - - - - - - - - - - - - -
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    user1.money_transfer(user2, 500.0, "Here's Casey's lunch money,");
-    user1.money_transfer(user3, 500.0, "Here's Brock's lunch money.");    
-        
-    user1.check_status();
-    user2.check_status();
-    user3.check_status();
+/* 
+   while (cin != Quit) {
 
-/*- - Order Sent Successfully - -
+      
+      if (cin == "New User" || "1") {
+         
+         print("Enter User Name")
+         usr_name = std::cin;
+         print("Enter money amount")
+         amount = std::cin
+         
+         users.insert({usr_name, new US_usr {usr_name, amount} }); 
+      
+      } else if (cin == "Money Transfer" || "2") {
+         
+         print("Who is sending the money?")
+         sender = std::cin;
+         print("Who is receiveing the money?")
+         receiver = std::cin
+         print("How much money is $sender sending to $receiver?")
+         amount = std::cin
+         print("Enter Your message")
+         message = std::cin
 
-- - Order Sent Successfully - -
+         users.at(sender)->money_transfer(receiver, amount, message);
 
-US Transaction:
-Arvi has sent $1000 to Brock
-Arvi has $2000 remaining.
-Recent Messages: None.
 
-US Transaction:
-Casey has received $500 from Arvi
-Casey has $2500 remaining.
-Recent Messages: From Arvi: Here's Casey's lunch money,
+      } else if (cin == "Check Status" || "3") {
 
-US Transaction:
-Brock has received $500 from Arvi
-Brock has $1500 remaining.
-Recent Messages: From Arvi: Here's Brock's lunch money.*/
+         print("Which user are you checking the status of??")
+         active_usr = std::cin;
+
+         users.at(active_usr)->check_status();
+
+
+      } else {
+         print(Try a different command.)
+         std::cin;
+      }
+
+
+   }
+
+
+
+
+*/
+
+
+
+
+
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+// US_usr user1; 
+
+
+std::string usr_name = "arvi";
+double amount = 1000.0;
+
+
+std::map<std::string, INTER_usr*> users;
+users.insert({usr_name, new US_usr {usr_name, amount} }); 
+ 
+usr_name = "casey";
+amount = 2000.0;
+
+users.insert({usr_name, new US_usr {usr_name, amount} }); 
+
+INTER_usr receiver;
+users.at("casey") = &receiver;
+
+users.at("arvi")->money_transfer(receiver, 400, "test");
+users.at("arvi")->check_status();
+
+std::cout << users.at("arvi")->curr_balance;
+std::cout << users.at("casey");
+
+//user1.check_status();
+
+}
