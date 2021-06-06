@@ -5,58 +5,83 @@
 #include <vector>
 #include <map>
 
+
+void intro() {
+   std::cout << "- - - - - - - - - - - - - Transfer Wallet Commands - - - - - - - - - - \n" << std::endl;
+   std::cout << "Create a new user by typing \"New_User\" or \"1\".\n";
+   std::cout << "Transfer money from one user to another by typing \"Money_Transfer\" or \"2\".\n";
+   std::cout << "Check the status of your user by typing \"Check_Status\" or \"3\".\n";
+   std::cout << "Stop the program by typing \"Quit\" or \"Q\".\n";
+   std::cout << "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - \n" << std::endl;
+}
+
 int main() {
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-// - - - - - - - - - - - - - - - - -   Command Line I/O  Pseudocode - - - - - - - - - - - - - - -
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-/* 
-   while (cin != Quit) {
+std::map<std::string, INTER_usr*> users;
 
+std::string usr_name;
+std::string sender;
+std::string active_usr;
+std::string msg;
+INTER_usr rec;
+
+std::string receiver;
+double balance;
+double transfer_amount;
+
+bool status = true;
+
+std::cout << " - - - - - - - - - - - - Welcome to Transfer-Wallet - - - - - - - - - -\n" << std::endl;
+
+intro();
+
+while (status) {
+   std::string input;
+   std::cin >> input;
+   
+   if (input == "Quit" || input == "Q") {
+      status = false;
+      break;
+
+   } else if (input == "New_User" || input == "1") {
+         
+      std::cout << "Enter the new user's name:\n";
+      std::cin >> usr_name;
+      std::cout << "Enter the user's money amount:\n";
+      std::cin >> balance;
+         
+      users.insert({usr_name, new US_usr {usr_name, balance} }); 
       
-      if (cin == "New User" || "1") {
-         
-         print("Enter User Name")
-         usr_name = std::cin;
-         print("Enter money amount")
-         amount = std::cin
-         
-         users.insert({usr_name, new US_usr {usr_name, amount} }); 
-      
-      } else if (cin == "Money Transfer" || "2") {
-         
-         print("Who is sending the money?")
-         sender = std::cin;
-         print("Who is receiveing the money?")
-         receiver = std::cin
-         print("How much money is $sender sending to $receiver?")
-         amount = std::cin
-         print("Enter Your message")
-         message = std::cin
+      intro();
 
-         users.at(sender)->money_transfer(receiver, amount, message);
+   } else if (input == "Money_Transfer" || input ==  "2") {
+        
+      std::cout << "Who is sending the money?";
+      std::cin >> sender;
+      std::cout << "Who is receiveing the money?";
+      std::cin >> receiver;
+      std::cout << "How much money is " << sender << " sending to $receiver?";
+      std::cin >> transfer_amount;
+      std::cout << "Enter Your message";
+      std::cin >> msg;
 
+      users.at(receiver) = &rec;
 
-      } else if (cin == "Check Status" || "3") {
+      users.at(sender)->money_transfer(rec, transfer_amount, msg);
 
-         print("Which user are you checking the status of??")
-         active_usr = std::cin;
+      intro();
 
-         users.at(active_usr)->check_status();
+   } else if (input == "Check_Status" || input ==  "3") {
 
+      std::cout << "Which user are you checking the status of?";
+      std::cin >> active_usr;
 
-      } else {
-         print(Try a different command.)
-         std::cin;
-      }
+      users.at(active_usr)->check_status();
 
+      intro();
+   } 
+}
 
-   }
-
-
-
-
-*/
 
 
 
@@ -68,26 +93,23 @@ int main() {
 // US_usr user1; 
 
 
-std::string usr_name = "arvi";
-double amount = 1000.0;
 
 
-std::map<std::string, INTER_usr*> users;
-users.insert({usr_name, new US_usr {usr_name, amount} }); 
+// users.insert({usr_name, new US_usr {usr_name, amount} }); 
  
-usr_name = "casey";
-amount = 2000.0;
+// usr_name = "casey";
+// amount = 2000.0;
 
-users.insert({usr_name, new US_usr {usr_name, amount} }); 
+// users.insert({usr_name, new US_usr {usr_name, amount} }); 
 
-INTER_usr receiver;
-users.at("casey") = &receiver;
+// INTER_usr receiver;
+// users.at("casey") = &receiver;
 
-users.at("arvi")->money_transfer(receiver, 400, "test");
-users.at("arvi")->check_status();
+// users.at("arvi")->money_transfer(receiver, 400, "test");
+// users.at("arvi")->check_status();
 
-std::cout << users.at("arvi")->curr_balance;
-std::cout << users.at("casey");
+// std::cout << users.at("arvi")->curr_balance;
+// std::cout << users.at("casey");
 
 //user1.check_status();
 

@@ -95,6 +95,6 @@ void INTER_usr::check_status() {
         std::cout << ""; } 
     else { 
         std::cout << "INTER Transaction: " << std::endl;
-        // transfer_msg();
+        transfer_msg();
     }
  }
