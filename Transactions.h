@@ -5,9 +5,18 @@
 
 
 struct Transactions {
+    std::string receiver_r;
+    // std::string name;
+    double amount;
+    std::string message;
+    // std::string sender_s;
+//    std::string active_user_a;
 
 };
  
+
+
+
 
 // - - - - - - Logic Order - - - - - - - - - 
 

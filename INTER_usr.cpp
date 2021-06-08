@@ -13,6 +13,12 @@ void INTER_usr::transfer_msg() {
     
     bal_change = curr_balance - init_bal;
 
+    std::cout << bal_change << "\n";
+
+    bal_change = t_obj.amount;
+
+    std::cout << bal_change;
+
     // Determine whether the user sent or received money
     if (bal_change < 0) {
         std::cout <<usr_name << " has sent " << currency << -bal_change << " to " << receiver_name << std::endl;
@@ -40,7 +46,7 @@ void INTER_usr::money_transfer(INTER_usr &receiver, double amount, std::string m
     this->receiver_name = receiver.usr_name;
     this->sender_name = this->usr_name;
 
-    // Transfer Calc
+    // Transfer Calc // Only good part
     if (sufficient_bal(amount)) { 
         // reset init_bal to curr_balance
         this->curr_balance -= amount;  
@@ -81,13 +87,9 @@ void INTER_usr::fee_list() {
 }
 
 void INTER_usr::hidden_fees(INTER_usr &usr) {
-    INTER_usr* admin = &usr;
-     admin->fee_list();
-    
-    usr.fee_list(); // Why does this work?
-
-    // Fun fact do admin->INTER_usr::fee_list(); to print out the INTER_usr version of the function | Try later with UK
+    usr.fee_list(); 
 }
+
 void INTER_usr::check_status() { 
      
     // There has to be a better way to do this

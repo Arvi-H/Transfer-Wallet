@@ -1,10 +1,14 @@
 #ifndef INTER_USR
 #define INTER_USR
 #include <string>
+#include "Transactions.h"
 
 class INTER_usr {
 
 public:
+
+    Transactions t_obj;
+
     double curr_balance;
     double init_bal;
     double bal_change;
@@ -23,15 +27,11 @@ public:
 
     void money_transfer(INTER_usr &receiver, double amount, std::string msg = "");
 
-
     void transfer_msg();
-
 
     void recent_msg();
 
-
     bool sufficient_bal(double amount);
-
 
     void hidden_fees(INTER_usr &usr);
  
