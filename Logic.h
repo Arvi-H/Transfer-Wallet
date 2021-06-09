@@ -8,7 +8,7 @@
 #include <map>
 
  
-class Logic : public INTER_usr{
+class Logic {
 
 public:
 
@@ -19,11 +19,10 @@ std::map<std::string, Transactions> transactions;
 
 std::string usr_name;
 std::string sender;
+std::string receiver;
 std::string active_usr;
 std::string msg;
-US_usr rec;
 
-std::string receiver;
 double balance;
 double transfer_amount;
 bool status = true;
@@ -32,8 +31,9 @@ bool status = true;
 
 void intro();
 void new_usr();
-void transfer();
-
+void transfer(std::string receiver, double transfer_amount, std::string msg);
+bool sufficient_bal2(double amount);
+void transfer_msg2();
 };
 
 #endif

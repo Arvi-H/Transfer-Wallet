@@ -7,32 +7,20 @@ class INTER_usr {
 
 public:
 
-    Transactions t_obj;
-
+  
     double curr_balance;
-    double init_bal;
-    double bal_change;
-
     std::string usr_name;
-    std::string receiver_name;
-    std::string sender_name;
-
-    std::string message = "";
-    std::string currency = "$";
+   
+    // std::string currency = "$";
 
     // Func overriden in all classes | Runtime Polymorphism
     virtual void check_status();
-    // virtual void check_status() = 0;
+ 
+  
+    // void recent_msg();
 
-
-    void money_transfer(INTER_usr &receiver, double amount, std::string msg = "");
-
-    void transfer_msg();
-
-    void recent_msg();
-
-    bool sufficient_bal(double amount);
-
+    // bool sufficient_bal(double amount);
+ 
     void hidden_fees(INTER_usr &usr);
  
  private:

@@ -2,21 +2,15 @@
 #define TRANSACTIONS
 #include "INTER_usr.h"
 #include <string>
-
-
+ 
 struct Transactions {
-    std::string receiver_r;
-    // std::string name;
+    std::string receiver;
     double amount;
     std::string message;
-    // std::string sender_s;
-//    std::string active_user_a;
-
+    std::string sender;
 };
  
-
-
-
+  
 
 // - - - - - - Logic Order - - - - - - - - - 
 
