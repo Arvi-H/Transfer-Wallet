@@ -22,13 +22,4 @@ void INTER_usr::fee_list() {
 void INTER_usr::hidden_fees(INTER_usr &usr) {
     usr.fee_list(); 
 }
-
-void INTER_usr::check_status() { 
-     
-    // There has to be a better way to do this
-    // if (curr_balance == init_bal) {
-    //     std::cout << ""; } 
-    // else { 
-        std::cout << "INTER Transaction: " << std::endl;
-     // }
- }
+ 

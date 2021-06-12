@@ -7,8 +7,7 @@ class US_usr : public INTER_usr {
 
 public:
     US_usr(std::string name = "Unknown US User", double balance_amount = 0.0);
-    void check_status();
-     
+      
 private:
     void fee_list();
     

@@ -8,21 +8,7 @@ US_usr::US_usr(std::string name, double balance_amount) {
     curr_balance = balance_amount;
     // init_bal = balance_amount;
 }
-
-
-
-void US_usr::check_status() { 
-     
-    // There has to be a better way to do this
-    // if (curr_balance == init_bal) {
-    //     std::cout << ""; } 
-    // else { 
-        std::cout << "US Transaction: " << std::endl;
-     // }
-
-    // std::cout << "test worked";
- }
-
+ 
 void US_usr::fee_list() {
     std::cout << "- - - - - - - - - - - - - - - - - - - - -" << std::endl;
     std::cout << "\tFees for US transactions:" << std::endl;

@@ -6,7 +6,7 @@
 #include <iostream>
 #include <string>
 #include <map>
-
+#include <vector>
  
 class Logic {
 
@@ -16,6 +16,7 @@ Transactions t;
 
 std::map<std::string, INTER_usr*> users;
 std::map<std::string, Transactions> transactions;
+std::vector<std::string> sender_l;
 
 std::string usr_name;
 std::string sender;
@@ -27,13 +28,11 @@ double balance;
 double transfer_amount;
 bool status = true;
 
-// struct Transactions foo { transfer_amount, usr_name, msg, sender, receiver, active_usr };
-
-void intro();
+void intro_msg();
 void new_usr();
 void transfer(std::string receiver, double transfer_amount, std::string msg);
-bool sufficient_bal2(double amount);
-void transfer_msg2();
+bool overdraft_check(double amount);
+void  transfer_msg(std::string active_usr);
 };
 
 #endif
