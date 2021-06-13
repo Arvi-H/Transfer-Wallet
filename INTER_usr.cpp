@@ -2,8 +2,6 @@
 #include <iostream>
 #include "Transactions.h"
 
-  
-
 void INTER_usr::fee_list() {
     std::cout << "- - - - - - - - - - - - - - - - - - - - -\n";
     std::cout << "\tFees for All Global transactions:" << std::endl;

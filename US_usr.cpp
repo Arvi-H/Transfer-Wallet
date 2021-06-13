@@ -6,7 +6,7 @@
 US_usr::US_usr(std::string name, double balance_amount) {
     usr_name = name;
     curr_balance = balance_amount;
-    // init_bal = balance_amount;
+    currency = "$";
 }
  
 void US_usr::fee_list() {
