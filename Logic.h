@@ -1,5 +1,6 @@
 #ifndef LOGIC
 #define LOGIC
+
 #include "INTER_usr.h"
 #include "US_usr.h"
 #include "Transactions.h"
@@ -32,7 +33,7 @@ void intro_msg();
 void new_usr();
 void transfer(std::string receiver, double transfer_amount, std::string msg);
 bool overdraft_check(double amount);
-void  transfer_msg(std::string active_usr);
+void transfer_msg(std::string active_usr);
 };
 
 #endif

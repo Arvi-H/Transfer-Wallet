@@ -7,7 +7,7 @@ struct Transactions {
     std::string receiver;
     double amount;
     std::string message;
-    std::string sender; // no longer will need this
+    std::string sender;  
 };
   
 #endif

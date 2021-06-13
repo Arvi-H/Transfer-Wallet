@@ -32,17 +32,22 @@ void Logic::transfer(std::string receiver, double transfer_amount, std::string m
     }
 }
 
+ 
 // Rename to check status
-void Logic:: transfer_msg(std::string active_usr) {
+void Logic::transfer_msg(std::string active_usr) {
 
     for (auto i : sender_l) {
+        // Receiver Message
         if (active_usr == transactions.at(i).receiver) {
-            std::cout << "Receiver Name:" << active_usr << "." << std::endl;
-        } else if (active_usr == transactions.at(i).sender) {
-            std::cout << "Sender Name:" << active_usr << "." << std::endl;
-        } else {
-            std::cout << "No activity shown.";
+            std::cout << active_usr << " has received " << transactions.at(i).amount << " from " << transactions.at(i).sender << ".\n";
+            std::cout << active_usr << " has " << users.at(active_usr)->curr_balance << " remaining.\n";
+            std::cout << "Message from " <<  transactions.at(i).sender << ": " << transactions.at(i).message << ".\n" << std::endl;
+        // Sender Message
+        } else if (active_usr== transactions.at(i).sender) {
+            std::cout << active_usr << " has sent " << transactions.at(i).amount << " to " << transactions.at(i).receiver << ".\n";
+            std::cout << active_usr << " has " << users.at(active_usr)->curr_balance << " remaining.\n" << std::endl;
         }
+
     }
  
 } 
@@ -57,9 +62,8 @@ void Logic::new_usr() {
         std::cin >> input;
     
         if (input == "Quit" || input == "q") {
-        status = false;
-        break;
-
+            status = false;
+            break;
         } else if (input == "New_User" || input == "1") {
             
             std::cout << "Enter the new user's name:\n";
@@ -95,3 +99,25 @@ void Logic::new_usr() {
     }
 }
 
+
+/* - - - - - - - - - - - - - Fundamentally Broken Things - - - - - - - - - - - - - - - -
+
+1. Enter "New_User" instead of "New User" Note the space
+
+2. Msg only printing the first half or until the space or something? Probs until space in sentance which is also the problem above
+
+3. Perform checks, i.e. if user exists, then continue. // prevent map out of range
+
+4. UK Users
+
+5. Fee List + Intro msg
+
+6. Transfer_fees(); // Perform calc to keep fee
+
+7. converter();
+
+8. Smooth Flow
+
+9. Crypto? or stop and do data structures instead idk
+
+*/
