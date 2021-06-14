@@ -3,6 +3,7 @@
 
 #include "INTER_usr.h"
 #include "US_usr.h"
+#include "UK_usr.h"
 #include "Transactions.h"
 #include <iostream>
 #include <string>
@@ -24,16 +25,21 @@ std::string sender;
 std::string receiver;
 std::string active_usr;
 std::string msg;
+std::string usr_location;
 
 double balance;
 double transfer_amount;
+const double usd_gbp_rate = 0.71;
+const double gbp_usd_rate = 1.40;
+
 bool status = true;
+
 
 void intro_msg();
 void new_usr();
-void transfer(std::string receiver, double transfer_amount, std::string msg);
+void transfer();
 bool overdraft_check(double amount);
-void transfer_msg(std::string active_usr);
+void check_status(std::string active_usr);
 };
 
 #endif

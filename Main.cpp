@@ -4,7 +4,7 @@
 #include "Logic.h"
 
 
-
+// Maybe make main func new_user() and do logic here? 
 int main() {
    Logic l;
    l.new_usr();
