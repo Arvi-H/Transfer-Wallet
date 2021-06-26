@@ -35,17 +35,21 @@ bool Logic::overdraft_check(double amount) {
 
 */
  
-void Logic::transfer() {
- 
+void Logic::transfer(std::string receiver, double transfer_amount, std::string msg, std::string sender) {
+    
+    itr = transactions.find(sender);
+    
     if (overdraft_check(transfer_amount)) { 
         // User Balance Calc
         users.at(sender)->curr_balance -= (transfer_amount + (transfer_amount * 0.02));
         users.at(receiver)->curr_balance += transfer_amount;
         
-        // Record Transaction
-        transactions.insert({sender, Transactions { receiver, transfer_amount, msg, sender}});
-        sender_l.push_back(sender);
-
+        if (itr != transactions.end()) {    
+             transactions.insert({sender, t_vec});
+        }
+        
+        itr->second.push_back({receiver, transfer_amount, msg, sender});
+ 
         std::cout << "- - Order Sent Successfully - -" << "\n" << std::endl;
 
     } else {
@@ -55,20 +59,28 @@ void Logic::transfer() {
 
 void Logic::check_status(std::string active_usr) {
 
-    for (auto i : sender_l) {
-        // Receiver Message
-        if (active_usr == transactions.at(i).receiver) {
-            std::cout << active_usr << " has received " << users.at(active_usr)->currency << transactions.at(i).amount << " from " << transactions.at(i).sender << ".\n";
-            std::cout << active_usr << " has " <<  users.at(active_usr)->currency << users.at(active_usr)->curr_balance << " remaining.\n";
-            std::cout << "Message from " <<  transactions.at(i).sender << ": " << transactions.at(i).message << ".\n" << std::endl;
-        // Sender Message
-        } else if (active_usr == transactions.at(i).sender) {
-            std::cout << active_usr << " has sent " <<  users.at(active_usr)->currency << transactions.at(i).amount << " to " << transactions.at(i).receiver << ".\n";
-            std::cout << active_usr << " has " <<  users.at(active_usr)->currency << users.at(active_usr)->curr_balance << " remaining.\n" << std::endl;
-        }
+    itr = transactions.find(active_usr);
 
+    for (int j = 0; j < itr->second.size(); j++) {
+        
+        // Sender Message
+        if (active_usr == itr->second.at(j).sender) {
+            
+            std::cout << active_usr << " has sent " <<  users.at(active_usr)->currency << itr->second.at(j).amount << " to " << itr->second.at(j).receiver << ".\n";
+
+            std::cout << active_usr << " has " <<  users.at(active_usr)->currency << users.at(active_usr)->curr_balance << " remaining.\n" << std::endl;
+
+        // Receiver Message
+        } else if (active_usr == itr->second.at(j).receiver) {
+           
+            std::cout << active_usr << " has received " <<  users.at(active_usr)->currency << itr->second.at(j).amount << " from " << itr->second.at(j).sender << ".\n";
+
+            std::cout << active_usr << " has " <<  users.at(active_usr)->currency << users.at(active_usr)->curr_balance << " remaining.\n" << std::endl;
+
+            std::cout << "Message from " <<  itr->second.at(j).sender << ": " << itr->second.at(j).message << ".\n" << std::endl;
+        }
     }
- 
+  
 } 
 
 void Logic::new_usr() {
@@ -78,12 +90,12 @@ void Logic::new_usr() {
 
     while (status) {
         std::string input;
-        std::cin >> input;
+        getline(std::cin, input);
     
         if (input == "Quit" || input == "q") {
             status = false;
             break;
-        } else if (input == "New_User" || input == "1") {
+        } else if (input == "New User" || input == "1") {
             
             std::cout << "Enter \"US\" to create a US user or \"UK\" to create a UK user:\n";
             std::cin >> usr_location;
@@ -111,9 +123,9 @@ void Logic::new_usr() {
             std::cout << "Enter Your message:\n";
             std::cin >> msg;
           
-            transfer();
+            transfer(receiver, transfer_amount, msg, sender);
             intro_msg();
-    
+
         } else if (input == "Check_Status" || input ==  "3") {
 
             std::cout << "Which user are you checking the status of?\n";
@@ -135,7 +147,7 @@ void Logic::new_usr() {
 
 /* - - - - - - - - - - - - - Fundamentally Broken Things - - - - - - - - - - - - - - - -
 
-1. Enter "New_User" instead of "New User" Note the space
+1. Enter "New_User" instead of "New User" Note the space -> Get line
 
 2. Msg only printing the first half or until the space or something? Probs until space in sentance which is also the problem above
 

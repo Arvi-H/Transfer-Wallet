@@ -17,8 +17,9 @@ public:
 Transactions t;
 
 std::map<std::string, INTER_usr*> users;
-std::map<std::string, Transactions> transactions;
-std::vector<std::string> sender_l;
+std::map<std::string, std::vector <Transactions>> transactions;
+std::vector<Transactions> t_vec;
+std::map<std::string, std::vector<Transactions>>::iterator itr;
 
 std::string usr_name;
 std::string sender;
@@ -37,7 +38,7 @@ bool status = true;
 
 void intro_msg();
 void new_usr();
-void transfer();
+void transfer(std::string receiver, double transfer_amount, std::string msg,  std::string sender);
 bool overdraft_check(double amount);
 void check_status(std::string active_usr);
 };
