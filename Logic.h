@@ -18,8 +18,9 @@ Transactions t;
 
 std::map<std::string, INTER_usr*> users;
 std::map<std::string, std::vector <Transactions>> transactions;
+std::map<std::string, std::vector <Transactions>> r_transactions;
 std::vector<Transactions> t_vec;
-std::map<std::string, std::vector<Transactions>>::iterator itr;
+std::vector<Transactions> t_vec2;
 
 std::string usr_name;
 std::string sender;

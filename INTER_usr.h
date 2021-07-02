@@ -9,7 +9,7 @@ public:
     double curr_balance;
     std::string usr_name;
     std::string currency;
-   
+ 
     void hidden_fees(INTER_usr *usr);
  
  private:

@@ -9,9 +9,9 @@ struct Transactions {
     double amount;
     std::string message;
     std::string sender;
-
+ 
     // friend std::ostream& operator<<(std::ostream& os, const Transactions& right) {
-
+  
     //     os << "receiver: " << right.receiver << '\n';
     //     os << "amount: " << right.amount << '\n';
     //     os << "message: " << right.message << '\n';
@@ -19,6 +19,10 @@ struct Transactions {
 
 
     //     return os;
+    // }
+
+    // friend std::ostream& operator<<(std::ostream& os, const std::vector<Transactions> right) {
+    //     os << "" << itrt->second.
     // }
 };
   

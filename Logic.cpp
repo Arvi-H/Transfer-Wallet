@@ -1,4 +1,5 @@
 #include "Logic.h"
+#include <algorithm>
 
 void Logic::intro_msg() {
    std::cout << "- - - - - - - - - - - - - Transfer Wallet Commands - - - - - - - - - - \n" << std::endl;
@@ -37,19 +38,26 @@ bool Logic::overdraft_check(double amount) {
  
 void Logic::transfer(std::string receiver, double transfer_amount, std::string msg, std::string sender) {
     
-    itr = transactions.find(sender);
+    std::map<std::string, std::vector<Transactions>>::iterator itr = transactions.find(sender);
+    std::map<std::string, std::vector<Transactions>>::iterator itr2 = r_transactions.find(receiver);
     
     if (overdraft_check(transfer_amount)) { 
         // User Balance Calc
         users.at(sender)->curr_balance -= (transfer_amount + (transfer_amount * 0.02));
         users.at(receiver)->curr_balance += transfer_amount;
-        
-        if (itr != transactions.end()) {    
-             transactions.insert({sender, t_vec});
-        }
-        
-        itr->second.push_back({receiver, transfer_amount, msg, sender});
- 
+
+        if (itr == transactions.end()) { 
+            transactions.insert({sender, t_vec});
+        }  
+
+        if (itr2 == r_transactions.end()) { 
+            r_transactions.insert({receiver, t_vec2});
+        }  
+
+        transactions.at(sender).push_back({receiver, transfer_amount, msg, sender});
+        r_transactions.at(receiver).push_back({receiver, transfer_amount, msg, sender});
+
+
         std::cout << "- - Order Sent Successfully - -" << "\n" << std::endl;
 
     } else {
@@ -58,30 +66,38 @@ void Logic::transfer(std::string receiver, double transfer_amount, std::string m
 }
 
 void Logic::check_status(std::string active_usr) {
+    
+    std::map<std::string, std::vector<Transactions>>::iterator itr = transactions.find(active_usr);
 
-    itr = transactions.find(active_usr);
+    std::map<std::string, std::vector<Transactions>>::iterator itr2 = r_transactions.find(active_usr);
 
-    for (int j = 0; j < itr->second.size(); j++) {
+
+   
+
+    if (active_usr == itr->first) {
         
-        // Sender Message
-        if (active_usr == itr->second.at(j).sender) {
-            
-            std::cout << active_usr << " has sent " <<  users.at(active_usr)->currency << itr->second.at(j).amount << " to " << itr->second.at(j).receiver << ".\n";
+        for (int i = 0; i < itr->second.size(); i++) {
+            std::cout << active_usr << " has sent " <<  users.at(active_usr)->currency << itr->second.at(i).amount << " to " << itr->second.at(i).receiver << ".\n";
+
+            std::cout << active_usr << " has " <<  users.at(active_usr)->currency << users.at(active_usr)->curr_balance << " remaining.\n" << std::endl;        }
+
+    } else if (active_usr == itr2->first) {
+    
+        for (int i = 0; i < itr2->second.size(); i++) {
+
+            std::cout << active_usr << " has received " <<  users.at(active_usr)->currency << itr2->second.at(i).amount << " from " << itr2->second.at(i).sender << ".\n";
 
             std::cout << active_usr << " has " <<  users.at(active_usr)->currency << users.at(active_usr)->curr_balance << " remaining.\n" << std::endl;
 
-        // Receiver Message
-        } else if (active_usr == itr->second.at(j).receiver) {
-           
-            std::cout << active_usr << " has received " <<  users.at(active_usr)->currency << itr->second.at(j).amount << " from " << itr->second.at(j).sender << ".\n";
+            std::cout << "Message from " <<  itr2->second.at(i).sender << ": " << itr2->second.at(i).message << ".\n" << std::endl;     }
 
-            std::cout << active_usr << " has " <<  users.at(active_usr)->currency << users.at(active_usr)->curr_balance << " remaining.\n" << std::endl;
-
-            std::cout << "Message from " <<  itr->second.at(j).sender << ": " << itr->second.at(j).message << ".\n" << std::endl;
-        }
+    } else {
+        std::cout << "test failed 2";
     }
+
+}
+
   
-} 
 
 void Logic::new_usr() {
 
@@ -122,7 +138,7 @@ void Logic::new_usr() {
             std::cin >> transfer_amount;
             std::cout << "Enter Your message:\n";
             std::cin >> msg;
-          
+                        
             transfer(receiver, transfer_amount, msg, sender);
             intro_msg();
 
@@ -165,4 +181,5 @@ void Logic::new_usr() {
 
 9. Crypto? or stop and do data structures instead idk
 
+10. Creating a new user with the same name as an existing user.
 */
