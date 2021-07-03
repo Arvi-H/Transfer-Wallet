@@ -3,10 +3,10 @@
 
 void Logic::intro_msg() {
    std::cout << "- - - - - - - - - - - - - Transfer Wallet Commands - - - - - - - - - - \n" << std::endl;
-   std::cout << "1. Create a new user by typing \"New_User\" or \"1\".\n";
-   std::cout << "2. Transfer money from one user to another by typing \"Money_Transfer\" or \"2\".\n";
-   std::cout << "3. Check the status of your user by typing \"Check_Status\" or \"3\".\n";
-   std::cout << "4. View Transfer Wallet fees by typing \"View_Fees\" or \"4\".\n";
+   std::cout << "1. Create a new user by typing \"New User\" or \"1\".\n";
+   std::cout << "2. Transfer money to a different user by typing \"Money Transfer\" or \"2\".\n";
+   std::cout << "3. Check the status of your user by typing \"Check Status\" or \"3\".\n";
+   std::cout << "4. View Transfer Wallet fees by typing \"View Fees\" or \"4\".\n";
    std::cout << "5. Stop the program by typing \"Quit\" or \"q\".\n";
    std::cout << "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - \n" << std::endl;
 }
@@ -71,9 +71,6 @@ void Logic::check_status(std::string active_usr) {
 
     std::map<std::string, std::vector<Transactions>>::iterator itr2 = r_transactions.find(active_usr);
 
-
-   
-
     if (active_usr == itr->first) {
         
         for (int i = 0; i < itr->second.size(); i++) {
@@ -92,16 +89,13 @@ void Logic::check_status(std::string active_usr) {
             std::cout << "Message from " <<  itr2->second.at(i).sender << ": " << itr2->second.at(i).message << ".\n" << std::endl;     }
 
     } else {
-        std::cout << "test failed 2";
+        std::cout << "User has no recent activity." << std::endl;
+        std::cout << active_usr << " has " <<  users.at(active_usr)->currency << users.at(active_usr)->curr_balance << " remaining.\n" << std::endl;
     }
-
 }
-
-  
 
 void Logic::new_usr() {
 
-    std::cout << " - - - - - - - - - - - - Welcome to Transfer-Wallet - - - - - - - - - -\n" << std::endl;
     intro_msg();
 
     while (status) {
@@ -117,18 +111,25 @@ void Logic::new_usr() {
             std::cin >> usr_location;
             std::cout << "Enter the new user's name:\n";
             std::cin >> usr_name;
-            std::cout << "Enter the user's money amount:\n";
-            std::cin >> balance;
-          
-            if (usr_location == "US") {
-                users.insert({usr_name, new US_usr {usr_name, balance} }); 
-            } else if (usr_location == "UK") {
-                users.insert({usr_name, new UK_usr {usr_name, balance} });
-            }
             
-            intro_msg();
+            std::map<std::string, INTER_usr*>::iterator new_user = users.find(usr_name);
 
-        } else if (input == "Money_Transfer" || input ==  "2") {
+            if (usr_name == new_user->first) { 
+                std::cout << "User already exists. Please choose a different name.\n" << std::endl;
+                new_usr();
+            } 
+                std::cout << "Enter the user's money amount:\n";
+                std::cin >> balance;
+            
+                if (usr_location == "US") {
+                    users.insert({usr_name, new US_usr {usr_name, balance} }); 
+                } else if (usr_location == "UK") {
+                    users.insert({usr_name, new UK_usr {usr_name, balance} });
+                }
+                
+                intro_msg();
+
+        } else if (input == "Money Transfer" || input ==  "2") {
             // Perform the following checks: 1. Sender and receiver have to exist. 2. transfer amnt and msg have to be the appropriate types. 3. Maybe use a templatized function to independently check for strings, objects and ints/doubles.
             std::cout << "Who is sending the money?\n";
             std::cin >> sender;
@@ -142,7 +143,7 @@ void Logic::new_usr() {
             transfer(receiver, transfer_amount, msg, sender);
             intro_msg();
 
-        } else if (input == "Check_Status" || input ==  "3") {
+        } else if (input == "Check Status" || input ==  "3") {
 
             std::cout << "Which user are you checking the status of?\n";
             std::cin >> active_usr;
@@ -150,7 +151,7 @@ void Logic::new_usr() {
             check_status(active_usr);
             intro_msg();
 
-        } else if (input == "View_Fees" || input ==  "4") { 
+        } else if (input == "View Fees" || input ==  "4") { 
             
             std::cout << "Which user is interested in looking at our fees?\n";
             std::cin >> active_usr;
@@ -163,7 +164,7 @@ void Logic::new_usr() {
 
 /* - - - - - - - - - - - - - Fundamentally Broken Things - - - - - - - - - - - - - - - -
 
-1. Enter "New_User" instead of "New User" Note the space -> Get line
+1. Enter "New_User" instead of "New User" Note the space -> Get line - Done
 
 2. Msg only printing the first half or until the space or something? Probs until space in sentance which is also the problem above
 
